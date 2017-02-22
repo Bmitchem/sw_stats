@@ -1,7 +1,7 @@
 
 (function() {
     "use strict";
-
+    window.truncatPlaces = 4;
     window.app = {};
 
     app.main = function() {
@@ -9,8 +9,12 @@
         $("#wild-dice").change(displaySuccess);
         $("#bonus").change(displaySuccess);
         $("#difficulty").change(displaySuccess);
+        $("#rounding").change(displaySuccess);
         displaySuccess();
     };
+    function truncate (num, places) {
+      return Math.trunc(num * Math.pow(10, places)) / Math.pow(10, places);
+    }
 
     function displaySuccess() {
         var rolls = explodingRolls(parseInt($("#dice").val()));
@@ -19,9 +23,17 @@
         }
         rolls = applyModif(rolls, parseInt($("#bonus").val()));
         var rate = success(rolls, parseInt($("#difficulty").val()));
-        $("#success-rate").text("" + Math.round(rate * 100) + "%");
         var raise = success(rolls, parseInt($("#difficulty").val()) + 4);
-        $("#raise-rate").text("" + Math.round(raise * 100) + "%");
+        if($('#rounding').is(':checked')){
+            rate = Math.round(rate * 100) + "%";
+            raise = Math.round(raise * 100) + "%";
+        }else{
+            rate = truncate(rate, window.truncatPlaces);
+            raise = truncate(raise, window.truncatPlaces);
+        }
+        $("#success-rate").text("" + rate);
+
+        $("#raise-rate").text("" + raise);
     }
 
     function simpleRolls(dice) {
