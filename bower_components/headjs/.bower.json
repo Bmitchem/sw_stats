@@ -44,8 +44,7 @@
     "tag": "v1.0.3",
     "commit": "edc8427191a633d80e7372c49e6d28a098be766f"
   },
-  "_source": "git://github.com/headjs/headjs.git",
+  "_source": "https://github.com/headjs/headjs.git",
   "_target": "~1.0.3",
-  "_originalSource": "headjs",
-  "_direct": true
+  "_originalSource": "headjs"
 }
