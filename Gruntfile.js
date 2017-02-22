@@ -15,7 +15,8 @@ module.exports = function(grunt) {
   var jsfiles = [].concat(libjsfiles).concat(myjsfiles);
 
   var libcssfiles = [
-  ];
+
+      ];
   var lessfiles = [
     "src/css/style.less",
   ];
